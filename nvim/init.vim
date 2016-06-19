@@ -1,0 +1,88 @@
+set shell=/bin/sh
+
+set termguicolors
+
+call plug#begin()
+
+Plug 'tpope/vim-sensible'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-abolish'
+Plug 'Townk/vim-autoclose'
+Plug 'chriskempson/base16-vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'godlygeek/tabular'
+Plug 'vim-scripts/a.vim'
+Plug 'tpope/vim-sleuth'
+Plug 'rizzatti/dash.vim'
+
+" NERD tree will be loaded on the first invocation of NERDTreeToggle command
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+
+" Load vim-go dynamically
+Plug 'fatih/vim-go', { 'for': 'go' }
+
+call plug#end()
+
+" --- General settings ---
+set clipboard=unnamedplus " sane clipboard use
+set mouse=a               " enable mouse
+set tabstop=2             " display tabs as two spaces
+set shiftwidth=2          " each level indents two spaces
+set number                " show line numbers
+
+syntax on
+set background=dark
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-solarized
+
+" exit to normal mode with 'jj'
+inoremap jj <ESC>
+
+" sane movement with wrap turned on
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+noremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+" set leader key to comma
+let mapleader = ","
+
+" ctrlp config
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_max_height = 30
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 0
+
+" Remap code completion to Ctrl+Space
+inoremap <Nul> <C-x><C-o>
+
+" ----- bling/vim-airline settings -----
+" Always show statusbar
+set laststatus=2
+
+let g:airline_theme="solarized"
+" Fancy arrow symbols, requires a patched font
+" To install a patched font, run over to
+"     https://github.com/powerline/fonts/tree/master/Inconsolata
+" download all the .ttf files, double-click on them and click "Install"
+" Finally, uncomment the next line
+let g:airline_powerline_fonts = 1
+
+" Show PASTE if in paste mode
+let g:airline_detect_paste=1
+
+" Show airline for tabs too
+let g:airline#extensions#tabline#enabled = 1
